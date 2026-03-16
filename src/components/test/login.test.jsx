@@ -31,7 +31,7 @@ describe('LoginInput component', () => {
     render(<LoginInput login={vi.fn()} />);
     const passwordInput = screen.getByPlaceholderText('password');
     //action
-    await userEvent.type(passwordInput, 'testpassword');
+    await userEvent.type(passwordInput, 'testpasswordd');
 
     //assert
     expect(passwordInput).toHaveValue('testpassword');
