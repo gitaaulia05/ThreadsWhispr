@@ -21,7 +21,7 @@ describe('LoginInput component', () => {
     const emailInput = screen.getByPlaceholderText('email');
 
     //action
-    await userEvent.type(emailInput, 'test@example.com');
+    await userEvent.type(emailInput, 'test');
 
     //assert
     expect(emailInput).toHaveValue('test@example.com');
