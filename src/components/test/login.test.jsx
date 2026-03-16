@@ -18,7 +18,7 @@ describe('LoginInput component', () => {
   it('should handle email typing correctly', async () => {
     //arrange
     render(<LoginInput login={vi.fn()} />);
-    const emailInput = screen.getByPlaceholderText('email');
+    const emailInput = screen.getByPlaceholderText('Email');
 
     //action
     await userEvent.type(emailInput, 'test');
