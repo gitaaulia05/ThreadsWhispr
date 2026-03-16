@@ -21,7 +21,7 @@ describe('LoginInput component', () => {
     const emailInput = screen.getByPlaceholderText('Email');
 
     //action
-    await userEvent.type(emailInput, 'test');
+    await userEvent.type(emailInput, 'test@example.com');
 
     //assert
     expect(emailInput).toHaveValue('test@example.com');
@@ -29,7 +29,7 @@ describe('LoginInput component', () => {
   it('should handle password typing correctly', async () => {
     //arrange
     render(<LoginInput login={vi.fn()} />);
-    const passwordInput = screen.getByPlaceholderText('Password');
+    const passwordInput = screen.getByPlaceholderText('password');
     //action
     await userEvent.type(passwordInput, 'testpassword');
 
