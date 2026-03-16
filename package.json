@@ -11,7 +11,8 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test": "vitest",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://0.0.0.0:5173 e2e"
   },
   "dependencies": {
     "@dimasmds/react-redux-loading-bar": "^5.0.10",
@@ -46,6 +47,7 @@
     "globals": "^16.4.0",
     "jsdom": "^29.0.0",
     "nodemon": "^3.1.14",
+    "start-server-and-test": "^2.1.5",
     "tailwindcss": "^4.2.1",
     "vite": "^7.1.7",
     "vitest": "^4.1.0"
