@@ -41,7 +41,7 @@ describe('LoginInput component', () => {
     //arrange
     const mockLogin = vi.fn();
     render(<LoginInput login={mockLogin} />);
-    const emailInput = await screen.getByPlaceholderText('Email');
+    const emailInput = await screen.getByPlaceholderText('email');
     await userEvent.type(emailInput, 'test@example.com');
     const passwordInput = await screen.getByPlaceholderText('Password');
     await userEvent.type(passwordInput, 'testpassword');
