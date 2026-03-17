@@ -29,7 +29,7 @@ function unsetAuthUserActionCreator() {
 
 import toast from 'react-hot-toast';
 
-function asyncSetAuthUser({ email, password }) {
+function asyncSetAuthUser({ email, password, navigate }) {
   return async (dispatch) => {
     try {
       const token = await api.login({ email, password });
@@ -37,6 +37,7 @@ function asyncSetAuthUser({ email, password }) {
       const authUser = await api.getOwnProfile();
 
       dispatch(setAuthUserActionCreator(authUser));
+      navigate('/');
       toast.success(`Welcome back, ${authUser.name}!`);
     } catch (error) {
       toast.error(error.message);
@@ -44,10 +45,12 @@ function asyncSetAuthUser({ email, password }) {
   };
 }
 
-function asyncUnsetAuthUser() {
+function asyncUnsetAuthUser(navigate) {
   return (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
     api.putAccessToken('');
+    toast.success('Logged out successfully!');
+    navigate('/login');
   };
 }
 

@@ -9,7 +9,7 @@
 
 describe('Login spec', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/');
+    cy.visit('http://localhost:5173/login');
   });
 
   it('should display login page correctly', () => {
@@ -43,8 +43,8 @@ describe('Login spec', () => {
   });
 
   it('should display homepage when email and password are correct', () => {
-    cy.get("input[placeholder='Email']").type('test');
-    cy.get("input[placeholder='Password']").type('test');
+    cy.get("input[placeholder='Email']").type('gitaauliahafid@gmail.com');
+    cy.get("input[placeholder='Password']").type('gitaaulia');
     cy.contains('button', 'Sign In').click();
     cy.url().should('include', '/');
   });

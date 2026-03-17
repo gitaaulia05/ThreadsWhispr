@@ -21,7 +21,6 @@ describe('Register spec', () => {
     cy.contains('button', 'Register').should('be.visible');
   });
 
-  
   it('should display alert when Fullname is empty', () => {
     cy.get('input[placeholder="name@example.com"]').type('test@gmail.com');
     cy.get('input[placeholder="••••••••"]').type('test');
@@ -66,5 +65,4 @@ describe('Register spec', () => {
     cy.contains('button', 'Register').click();
     cy.url().should('include', '/');
   });
-
 });

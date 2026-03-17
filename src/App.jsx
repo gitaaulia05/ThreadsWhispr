@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
-    (states) => states,
+    (states) => states
   ); // @TODO: get authUser and isPreLoad state from store
 
   const dispatch = useDispatch(); // @TODO: get dispatch function from store
@@ -21,7 +21,6 @@ function App() {
     // @TODO: dispatch async action to preload app
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
-
 
   if (isPreload) {
     return null;
@@ -34,8 +33,9 @@ function App() {
         <Loading />
         <main>
           <Routes>
-            <Route path="/*" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<LoginPage />} />
           </Routes>
         </main>
       </>
@@ -49,7 +49,7 @@ function App() {
       <div className="app-container">
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/*" element={<HomePage />} />
             <Route path="/threads/:id" element={<DetailPage />} />
           </Routes>
         </main>
