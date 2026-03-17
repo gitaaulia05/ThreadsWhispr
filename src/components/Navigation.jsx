@@ -2,17 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { asyncUnsetAuthUser } from '../states/authUser/action';
+import { useNavigate } from 'react-router-dom';
 
 function Navigation() {
   const authUser = useSelector((state) => state.authUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   if (!authUser) return null;
 
   const { id, avatar, name } = authUser;
 
   const onSignOut = () => {
-    dispatch(asyncUnsetAuthUser());
+    dispatch(asyncUnsetAuthUser(navigate));
   };
 
   return (

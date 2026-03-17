@@ -79,7 +79,7 @@ function RegisterPage() {
           {/* Navigation Tabs */}
           <div className='flex bg-slate-100 p-1 rounded-xl'>
             <Link
-              to='/'
+              to='/login'
               className='flex-1 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors text-center'
             >
               Login

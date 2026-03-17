@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import LoginInput from '../components/LoginInput';
 import { useDispatch } from 'react-redux';
 import { asyncSetAuthUser } from '../states/authUser/action';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onLogin = ({ email, password }) => {
-    dispatch(asyncSetAuthUser({ email, password }));
+    dispatch(asyncSetAuthUser({ email, password, navigate }));
   };
 
   return (
