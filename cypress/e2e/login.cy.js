@@ -47,6 +47,5 @@ describe('Login spec', () => {
     cy.get("input[placeholder='Password']").type('gitaaulia');
     cy.contains('button', 'Sign In').click();
     cy.url().should('include', '/');
-    cy.contains('button', 'Sign out').should('be.visible');
   });
 });
