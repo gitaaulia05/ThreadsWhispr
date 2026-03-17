@@ -3,6 +3,7 @@
  */
 
 import api from '../../utils/api';
+import toast from 'react-hot-toast';
 
 const ActionType = {
   SET_AUTH_USER: 'SET_AUTH_USER',
@@ -26,8 +27,6 @@ function unsetAuthUserActionCreator() {
     },
   };
 }
-
-import toast from 'react-hot-toast';
 
 function asyncSetAuthUser({ email, password, navigate }) {
   return async (dispatch) => {

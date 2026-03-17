@@ -4,15 +4,21 @@
  * - asyncSetAuthUser thunk
  * - should dispatch action correctly when data fetching success
  * - should dispatch action and call toast error when data fetching failed
+ * 
+ * - asyncUnsetAuthUser thunk
+ * - should dispatch action correctly when data fetching success
+ * - should dispatch action and call toast error when data fetching failed
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { asyncSetAuthUser } from './action';
+import { asyncSetAuthUser, asyncUnsetAuthUser, unsetAuthUserActionCreator } from './action';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
 
 vi.mock('../../utils/api');
 vi.mock('react-hot-toast');
+vi.mock('react-router-dom');
+
 
 describe('asyncSetAuthUser thunk', () => {
   beforeEach(() => {
@@ -34,8 +40,9 @@ describe('asyncSetAuthUser thunk', () => {
     const dispatch = vi.fn();
     const getState = vi.fn().mockReturnValue({ authUser: null });
 
+    const fakeNavigate = vi.fn();
     // act
-    await asyncSetAuthUser({ email: 'test@example.com', password: 'password' })(
+    await asyncSetAuthUser({ email: 'test@example.com', password: 'password', navigate: fakeNavigate })(
       dispatch,
       getState
     );
@@ -65,7 +72,7 @@ describe('asyncSetAuthUser thunk', () => {
     const getState = vi.fn().mockReturnValue({ authUser: null });
 
     // act
-    await asyncSetAuthUser({ email: 'test@example.com', password: 'password' })(
+    await asyncSetAuthUser({ email: 'test@example.com', password: 'password', navigate: vi.fn() })(
       dispatch,
       getState
     );
@@ -73,4 +80,32 @@ describe('asyncSetAuthUser thunk', () => {
     // assert
     expect(toast.error).toHaveBeenCalledWith(mockError.message);
   });
+
+});
+
+describe('asyncUnsetAuthUser thunk', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('should dispatch action correctly when logout success', async () => {
+    // arrange
+    api.putAccessToken.mockImplementation(() => {});
+    const dispatch = vi.fn();
+    const fakeNavigate = vi.fn();
+
+    // act
+    await asyncUnsetAuthUser(fakeNavigate)(dispatch);
+
+    // assert
+    expect(dispatch).toHaveBeenCalledWith(unsetAuthUserActionCreator());
+
+    expect(api.putAccessToken).toHaveBeenCalledWith('');
+
+    expect(toast.success).toHaveBeenCalledWith('Logged out successfully!');
+
+    expect(fakeNavigate).toHaveBeenCalledWith('/login');
+  });
+
+ 
 });
