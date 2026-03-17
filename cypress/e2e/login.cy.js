@@ -43,10 +43,10 @@ describe('Login spec', () => {
   });
 
   it('should display homepage when email and password are correct', () => {
-    cy.get("input[placeholder='Email']").type('test@gmail.com');
-    cy.get("input[placeholder='Password']").type('test1234');
+    cy.get("input[placeholder='Email']").type('gitaauliahafid@gmail.com');
+    cy.get("input[placeholder='Password']").type('gitaaulia');
     cy.contains('button', 'Sign In').click();
     cy.url().should('include', '/');
-    cy.contains('button', 'Sign out').click();
+    cy.contains('button', 'Sign out').should('be.visible');
   });
 });
